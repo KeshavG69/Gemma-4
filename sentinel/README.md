@@ -210,13 +210,7 @@ Open `http://localhost:8080`, browse the `notes` table.
 - ✗ Notify you in real time (out of scope for v1)
 - ✗ Work on Windows / Linux (MLX is Apple Silicon only)
 
----
 
-## Honest limitations
-
-- The 8-bit Gemma 4 occasionally misreads tiny UI text (badge counts, dense menus). Bumping to bf16 or the 26B variant fixes it at the cost of ~5–10× inference time.
-- Each screenshot inference is **~2–5 seconds** on M3/M4. Multi-monitor doubles that.
-- The agent's SQL is occasionally imperfect on time-window questions. The system prompt has worked examples to steer it; failures fall back to retries via Agno's tool-error loop.
 
 ---
 
