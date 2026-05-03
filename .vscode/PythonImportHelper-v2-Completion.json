@@ -133,6 +133,14 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -421,6 +429,14 @@
     },
     {
         "label": "init_db",
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "isExtraImport": true,
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "notes_on_date",
         "importPath": "sentinel.storage",
         "description": "sentinel.storage",
         "isExtraImport": true,
@@ -2130,7 +2146,7 @@
         "kind": 2,
         "importPath": "sentinel.ui",
         "description": "sentinel.ui",
-        "peekOfCode": "def build_ui() -> None:\n    init_db()\n    ui.colors(primary=\"#5D5CDE\")\n    with ui.column().classes(\"w-full max-w-3xl mx-auto p-6 gap-6\"):\n        # ── Header ────────────────────────────────────────────\n        with ui.row().classes(\"items-center w-full\"):\n            ui.label(\"Sentinel\").classes(\"text-3xl font-bold\")\n            ui.space()\n            status_chip = ui.chip(\"Idle\", color=\"grey\", text_color=\"white\")\n        def refresh_status():",
+        "peekOfCode": "def build_ui() -> None:\n    init_db()\n    # Theme\n    ui.colors(\n        primary=\"#5D5CDE\",\n        secondary=\"#10B981\",\n        accent=\"#F59E0B\",\n        positive=\"#10B981\",\n        negative=\"#EF4444\",\n    )",
         "detail": "sentinel.ui",
         "documentation": {}
     },
@@ -2139,7 +2155,16 @@
         "kind": 2,
         "importPath": "sentinel.ui",
         "description": "sentinel.ui",
-        "peekOfCode": "def main() -> None:\n    ui.run(\n        title=\"Sentinel\",\n        native=True,\n        window_size=(1100, 800),\n        reload=False,\n    )\nif __name__ in {\"__main__\", \"__mp_main__\"}:\n    main()",
+        "peekOfCode": "def main() -> None:\n    ui.run(\n        title=\"Sentinel\",\n        native=True,\n        window_size=(1100, 900),\n        reload=False,\n    )\nif __name__ in {\"__main__\", \"__mp_main__\"}:\n    main()",
+        "detail": "sentinel.ui",
+        "documentation": {}
+    },
+    {
+        "label": "SUGGESTED_QUESTIONS",
+        "kind": 5,
+        "importPath": "sentinel.ui",
+        "description": "sentinel.ui",
+        "peekOfCode": "SUGGESTED_QUESTIONS = [\n    \"What apps did I use today?\",\n    \"What was I doing at 1 AM?\",\n    \"Any high urgency moments today?\",\n    \"Summarise the last hour\",\n]\n_agent = None\ndef _get_agent():\n    global _agent\n    if _agent is None:",
         "detail": "sentinel.ui",
         "documentation": {}
     },
@@ -2148,7 +2173,7 @@
         "kind": 5,
         "importPath": "sentinel.ui",
         "description": "sentinel.ui",
-        "peekOfCode": "_agent = None\ndef _get_agent():\n    \"\"\"Lazy — building the agent triggers an HTTP probe to the MLX server.\"\"\"\n    global _agent\n    if _agent is None:\n        _agent = make_agent()\n    return _agent\ndef _capture_status_text() -> tuple[str, str]:\n    \"\"\"Heuristic: if the most recent note is younger than 2 capture intervals, we're live.\"\"\"\n    from sentinel.settings import settings",
+        "peekOfCode": "_agent = None\ndef _get_agent():\n    global _agent\n    if _agent is None:\n        _agent = make_agent()\n    return _agent\ndef _capture_status() -> tuple[str, str, str]:\n    \"\"\"Returns (label, color, icon) for the status chip.\"\"\"\n    from sentinel.settings import settings\n    notes = recent_notes(limit=1)",
         "detail": "sentinel.ui",
         "documentation": {}
     },

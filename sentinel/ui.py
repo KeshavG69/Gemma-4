@@ -1,74 +1,141 @@
-"""Sentinel desktop UI — header, ask box, digest button, live notes feed.
+"""Sentinel desktop UI — polished demo layout.
 
 Run:
     uv run python -m sentinel.ui
 """
 
-import asyncio
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from nicegui import ui
 
 from sentinel.agent import make_agent
 from sentinel.digest import stream_digest
-from sentinel.storage import init_db, recent_notes  # recent_notes still used for status chip
+from sentinel.storage import init_db, notes_on_date, recent_notes
 from sentinel.streaming import stream_agent_response
+
+
+SUGGESTED_QUESTIONS = [
+    "What apps did I use today?",
+    "What was I doing at 1 AM?",
+    "Any high urgency moments today?",
+    "Summarise the last hour",
+]
 
 
 _agent = None
 
 
 def _get_agent():
-    """Lazy — building the agent triggers an HTTP probe to the MLX server."""
     global _agent
     if _agent is None:
         _agent = make_agent()
     return _agent
 
 
-def _capture_status_text() -> tuple[str, str]:
-    """Heuristic: if the most recent note is younger than 2 capture intervals, we're live."""
+def _capture_status() -> tuple[str, str, str]:
+    """Returns (label, color, icon) for the status chip."""
     from sentinel.settings import settings
 
     notes = recent_notes(limit=1)
     if not notes:
-        return "Idle", "grey"
+        return "Idle", "grey-7", "circle"
     age = datetime.now() - notes[0].ts
     if age <= timedelta(seconds=settings.CAPTURE_INTERVAL_SECONDS * 2):
-        return "Capturing", "green"
-    return f"Last note {int(age.total_seconds() // 60)}m ago", "orange"
+        return "Capturing", "green", "fiber_manual_record"
+    minutes = int(age.total_seconds() // 60)
+    return f"Last note {minutes}m ago", "orange", "schedule"
 
 
 def build_ui() -> None:
     init_db()
 
-    ui.colors(primary="#5D5CDE")
+    # Theme
+    ui.colors(
+        primary="#5D5CDE",
+        secondary="#10B981",
+        accent="#F59E0B",
+        positive="#10B981",
+        negative="#EF4444",
+    )
 
-    with ui.column().classes("w-full max-w-3xl mx-auto p-6 gap-6"):
-        # ── Header ────────────────────────────────────────────
-        with ui.row().classes("items-center w-full"):
-            ui.label("Sentinel").classes("text-3xl font-bold")
-            ui.space()
-            status_chip = ui.chip("Idle", color="grey", text_color="white")
+    # Page background
+    ui.query("body").style("background-color: #F8FAFC")
+
+    with ui.column().classes("w-full max-w-4xl mx-auto p-8 gap-6"):
+
+        # ── HEADER ─────────────────────────────────────────────────
+        with ui.row().classes("w-full items-start justify-between"):
+            with ui.column().classes("gap-1"):
+                with ui.row().classes("items-center gap-3"):
+                    ui.icon("shield", size="2.25rem").classes("text-primary")
+                    ui.label("Sentinel").classes("text-4xl font-bold tracking-tight")
+                ui.label("Your day, remembered locally.").classes(
+                    "text-lg text-gray-600"
+                )
+                with ui.row().classes("items-center gap-1.5 mt-1"):
+                    ui.icon("lock", size="0.875rem").classes("text-emerald-600")
+                    ui.label("100% on this laptop · Powered by Gemma 4").classes(
+                        "text-xs text-gray-500"
+                    )
+            status_chip = (
+                ui.chip("Idle", icon="circle", color="grey-7")
+                .props("text-color=white outline")
+                .classes("mt-1")
+            )
 
         def refresh_status():
-            text, color = _capture_status_text()
-            status_chip.text = text
-            status_chip.props(f"color={color}")
+            label, color, icon = _capture_status()
+            status_chip.text = label
+            status_chip.props(f"color={color} icon={icon}")
 
         ui.timer(5.0, refresh_status, immediate=True)
 
-        # ── Ask ───────────────────────────────────────────────
-        with ui.card().classes("w-full"):
-            ui.label("Ask anything").classes("text-lg font-semibold")
+        # ── STATS STRIP ────────────────────────────────────────────
+        with ui.row().classes("w-full gap-4"):
+            stat_cards: dict[str, ui.label] = {}
+            for key, label in [
+                ("notes", "Notes today"),
+                ("apps", "Unique apps"),
+                ("first", "First note today"),
+            ]:
+                with ui.card().classes(
+                    "flex-1 p-4 shadow-sm border border-gray-100"
+                ):
+                    ui.label(label).classes(
+                        "text-xs text-gray-500 uppercase tracking-wider"
+                    )
+                    stat_cards[key] = ui.label("—").classes(
+                        "text-3xl font-bold mt-1 text-gray-900"
+                    )
+
+        def refresh_stats():
+            today = notes_on_date(date.today())
+            stat_cards["notes"].text = str(len(today))
+            stat_cards["apps"].text = str(len({n.app for n in today}))
+            stat_cards["first"].text = today[0].ts.strftime("%H:%M") if today else "—"
+
+        ui.timer(10.0, refresh_stats, immediate=True)
+
+        # ── ASK CARD ───────────────────────────────────────────────
+        with ui.card().classes("w-full p-6 shadow-sm border border-gray-100"):
+            with ui.row().classes("items-center gap-2 mb-3"):
+                ui.icon("question_answer", size="1.5rem").classes("text-primary")
+                ui.label("Ask anything").classes("text-xl font-semibold text-gray-900")
+
             with ui.row().classes("w-full items-center gap-2"):
                 question_input = (
-                    ui.input(placeholder="what was I doing at 1 AM?")
+                    ui.input(placeholder="What was I doing at 1 AM last night?")
                     .classes("flex-grow")
-                    .props("outlined dense")
+                    .props("outlined dense rounded")
                 )
-                ask_button = ui.button("Ask", icon="search")
-            answer = ui.markdown("").classes("mt-3")
+                ask_button = (
+                    ui.button("Ask", icon="send")
+                    .props("rounded color=primary")
+                )
+
+            answer = ui.markdown("").classes(
+                "mt-4 p-4 bg-slate-50 rounded-lg min-h-[60px] prose prose-sm max-w-none"
+            )
 
             async def on_ask():
                 q = (question_input.value or "").strip()
@@ -84,13 +151,17 @@ def build_ui() -> None:
                             buffer.append(ev["content"])
                             answer.set_content("".join(buffer))
                         elif kind == "tool.started":
-                            buffer.append(f"\n\n_calling `{ev['tool_name']}` ..._\n")
+                            buffer.append(
+                                f"\n\n🔎 _Querying: `{ev['tool_name']}`_\n\n"
+                            )
                             answer.set_content("".join(buffer))
                         elif kind == "tool.completed":
-                            buffer.append("_(tool done)_\n\n")
+                            if ev.get("error"):
+                                buffer.append(f"⚠ _Tool error_\n\n")
+                            else:
+                                buffer.append("✓ _Got results_\n\n")
                             answer.set_content("".join(buffer))
                         elif kind == "message.completed":
-                            # Deltas already built the full text; only fall back if empty.
                             if not buffer and ev.get("content"):
                                 answer.set_content(ev["content"])
                         elif kind == "error":
@@ -104,13 +175,39 @@ def build_ui() -> None:
             ask_button.on_click(on_ask)
             question_input.on("keydown.enter", on_ask)
 
-        # ── Digest ────────────────────────────────────────────
-        with ui.card().classes("w-full"):
-            with ui.row().classes("items-center w-full"):
-                ui.label("Today's briefing").classes("text-lg font-semibold")
+            # Suggestion chips
+            with ui.row().classes("items-center gap-2 mt-4 flex-wrap"):
+                ui.label("Try:").classes("text-sm text-gray-500")
+                for q in SUGGESTED_QUESTIONS:
+                    def make_handler(question_text=q):
+                        async def handler():
+                            question_input.value = question_text
+                            await on_ask()
+                        return handler
+                    chip = (
+                        ui.chip(q, color="primary")
+                        .props("outline clickable")
+                        .classes("text-sm")
+                    )
+                    chip.on("click", make_handler())
+
+        # ── DIGEST CARD ────────────────────────────────────────────
+        with ui.card().classes("w-full p-6 shadow-sm border border-gray-100"):
+            with ui.row().classes("items-center w-full mb-3"):
+                ui.icon("auto_awesome", size="1.5rem").classes("text-amber-500")
+                ui.label("Today's briefing").classes(
+                    "text-xl font-semibold text-gray-900"
+                )
                 ui.space()
-                digest_button = ui.button("Generate", icon="article")
-            digest_text = ui.markdown("").classes("mt-3")
+                digest_button = (
+                    ui.button("Generate", icon="auto_fix_high")
+                    .props("rounded color=primary outline")
+                )
+            digest_text = ui.markdown(
+                "_Click **Generate** to summarise everything Sentinel saw today._"
+            ).classes(
+                "mt-2 p-4 bg-slate-50 rounded-lg min-h-[60px] prose prose-sm max-w-none text-gray-700"
+            )
 
             async def on_digest():
                 digest_button.disable()
@@ -127,6 +224,12 @@ def build_ui() -> None:
 
             digest_button.on_click(on_digest)
 
+        # ── FOOTER ─────────────────────────────────────────────────
+        with ui.row().classes("w-full justify-center mt-2"):
+            ui.label(
+                "Built with Gemma 4 · Agno · NiceGUI · MLX. No data leaves this machine."
+            ).classes("text-xs text-gray-400")
+
 
 build_ui()
 
@@ -135,7 +238,7 @@ def main() -> None:
     ui.run(
         title="Sentinel",
         native=True,
-        window_size=(1100, 800),
+        window_size=(1100, 900),
         reload=False,
     )
 
