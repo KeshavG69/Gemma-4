@@ -56,21 +56,34 @@ def insert_note(note: Note) -> int:
         return cur.lastrowid
 
 
+def _row_to_note(row) -> Note:
+    return Note(
+        ts=datetime.fromisoformat(row["ts"]),
+        screen=row["screen"],
+        app=row["app"],
+        ocr=row["ocr"],
+        summary=row["summary"],
+        people=json.loads(row["people"]),
+        urgency=row["urgency"],
+    )
+
+
 def recent_notes(limit: int = 10) -> list[Note]:
     with _connect() as conn:
         rows = conn.execute(
             "SELECT ts, screen, app, ocr, summary, people, urgency FROM notes ORDER BY ts DESC LIMIT ?",
             (limit,),
         ).fetchall()
-    return [
-        Note(
-            ts=datetime.fromisoformat(r["ts"]),
-            screen=r["screen"],
-            app=r["app"],
-            ocr=r["ocr"],
-            summary=r["summary"],
-            people=json.loads(r["people"]),
-            urgency=r["urgency"],
-        )
-        for r in rows
-    ]
+    return [_row_to_note(r) for r in rows]
+
+
+def notes_on_date(d) -> list[Note]:
+    """All notes for a given local date, oldest first. No limit."""
+    iso = d.isoformat() if hasattr(d, "isoformat") else str(d)
+    with _connect() as conn:
+        rows = conn.execute(
+            "SELECT ts, screen, app, ocr, summary, people, urgency FROM notes "
+            "WHERE date(ts) = ? ORDER BY ts ASC",
+            (iso,),
+        ).fetchall()
+    return [_row_to_note(r) for r in rows]

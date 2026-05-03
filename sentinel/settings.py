@@ -17,9 +17,9 @@ class Settings(BaseSettings):
 
     @property
     def db_path(self) -> Path:
-        """DB_PATH resolved to an absolute path (relative to project root)."""
         
         return self.DB_PATH
+
 
 
 

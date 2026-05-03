@@ -76,6 +76,35 @@ After running a query, write a natural, concise answer for the user. Cite specif
 timestamps and apps when relevant. If the result is empty, say so honestly."""
 
 
+_TS_COMPARISON_RE = re.compile(
+    r"(?<!\w)ts(?=\s*(?:=|<>|!=|<=|>=|<|>|BETWEEN\b|IN\b))",
+    flags=re.IGNORECASE,
+)
+_TS_LITERAL_RE = re.compile(
+    r"'(\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)?)'",
+)
+
+
+def _normalise_ts(sql: str) -> str:
+    """Make ts comparisons format-agnostic.
+
+    Notes are stored with ISO 8601 'T' separators and microseconds, e.g.
+    '2026-05-03T01:20:05.581794'. A naive comparison like
+        WHERE ts BETWEEN '2026-05-03 00:30:00' AND '2026-05-03 01:30:00'
+    silently returns nothing because ' ' (0x20) sorts before 'T' (0x54)
+    lexicographically.
+
+    We make this work by:
+      1. Wrapping bare `ts` in comparison contexts with datetime(ts).
+      2. Wrapping timestamp-looking string literals with datetime('...').
+
+    Both transformations are idempotent (datetime(datetime(x)) == datetime(x)).
+    """
+    sql = _TS_COMPARISON_RE.sub("datetime(ts)", sql)
+    sql = _TS_LITERAL_RE.sub(r"datetime('\1')", sql)
+    return sql
+
+
 @tool
 def query_notes(sql: str) -> str:
     """Execute a single read-only SELECT against the notes table.
@@ -91,6 +120,8 @@ def query_notes(sql: str) -> str:
         return "ERROR: Only SELECT queries allowed."
     if ";" in sql:
         return "ERROR: Only one statement allowed."
+
+    sql = _normalise_ts(sql)
 
     try:
         with sqlite3.connect(f"file:{settings.db_path}?mode=ro", uri=True) as conn:
