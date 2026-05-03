@@ -220,8 +220,7 @@ Things that would obviously be next:
 
 - Real-time nudges ("Sarah from Sequoia just emailed")
 - Voice queries (talk instead of type)
-- Multi-day search ("when did we last discuss pricing?")
-- Optional connectors for Slack / Gmail / Calendar metadata
+
 
 ---
 
