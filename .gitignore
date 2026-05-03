@@ -17,3 +17,7 @@ wheels/
 
 # macOS
 .DS_Store
+
+# Markdown files in project root
+/*.md
+/*.MD
