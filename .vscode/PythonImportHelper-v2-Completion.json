@@ -1,0 +1,627 @@
+[
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Agent",
+        "importPath": "agno.agent",
+        "description": "agno.agent",
+        "isExtraImport": true,
+        "detail": "agno.agent",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAILike",
+        "importPath": "agno.models.openai",
+        "description": "agno.models.openai",
+        "isExtraImport": true,
+        "detail": "agno.models.openai",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "agno.tools",
+        "description": "agno.tools",
+        "isExtraImport": true,
+        "detail": "agno.tools",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
+        "isExtraImport": true,
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
+        "isExtraImport": true,
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "yaml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yaml",
+        "description": "yaml",
+        "detail": "yaml",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI",
+        "importPath": "openai",
+        "description": "openai",
+        "isExtraImport": true,
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "isExtraImport": true,
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "NoteAnalysis",
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "isExtraImport": true,
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "isExtraImport": true,
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "mss",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mss",
+        "description": "mss",
+        "detail": "mss",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_screenshot",
+        "importPath": "sentinel.analyze",
+        "description": "sentinel.analyze",
+        "isExtraImport": true,
+        "detail": "sentinel.analyze",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "isExtraImport": true,
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "insert_note",
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "isExtraImport": true,
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "SettingsConfigDict",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_screenshot",
+        "importPath": "analyze",
+        "description": "analyze",
+        "isExtraImport": true,
+        "detail": "analyze",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"gemma4\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"gemma4\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"gemma4\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"gemma4\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"gemma4\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.11/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "query_notes",
+        "kind": 2,
+        "importPath": "sentinel.agent",
+        "description": "sentinel.agent",
+        "peekOfCode": "def query_notes(sql: str) -> str:\n    \"\"\"Execute a single read-only SELECT against the notes table.\n    Args:\n        sql: A single SELECT statement. No DDL, DML, or multiple statements.\n    Returns:\n        JSON-encoded list of result rows, or a string starting with 'ERROR:'.\n    \"\"\"\n    sql = sql.strip().rstrip(\";\")\n    if not sql.lower().startswith(\"select\"):\n        return \"ERROR: Only SELECT queries allowed.\"",
+        "detail": "sentinel.agent",
+        "documentation": {}
+    },
+    {
+        "label": "make_agent",
+        "kind": 2,
+        "importPath": "sentinel.agent",
+        "description": "sentinel.agent",
+        "peekOfCode": "def make_agent() -> Agent:\n    return Agent(\n        model=OpenAILike(\n            id=settings.GEMMA_MODEL,\n            base_url=settings.GEMMA_BASE_URL,\n            api_key=\"not-needed\",\n        ),\n        tools=[query_notes],\n        instructions=SYSTEM_PROMPT.format(\n            interval=settings.CAPTURE_INTERVAL_SECONDS,",
+        "detail": "sentinel.agent",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "sentinel.agent",
+        "description": "sentinel.agent",
+        "peekOfCode": "def main() -> None:\n    if len(sys.argv) < 2:\n        print('Usage: uv run python -m sentinel.agent \"<question>\"')\n        sys.exit(1)\n    question = \" \".join(sys.argv[1:])\n    agent = make_agent()\n    response = agent.run(question)\n    print(response.content)\nif __name__ == \"__main__\":\n    main()",
+        "detail": "sentinel.agent",
+        "documentation": {}
+    },
+    {
+        "label": "SYSTEM_PROMPT",
+        "kind": 5,
+        "importPath": "sentinel.agent",
+        "description": "sentinel.agent",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You answer questions about the user's screen activity by querying a notes table.\nEach row is one screenshot the user's laptop took every {interval}s while they worked.\nSchema:\n```sql\nCREATE TABLE notes (\n    id       INTEGER PRIMARY KEY,\n    ts       TEXT,         -- ISO 8601 local timestamp\n    screen   INTEGER,      -- monitor index (1, 2, ...)\n    app      TEXT,         -- app or website in focus, e.g. 'Slack', 'VS Code', 'Gmail'\n    ocr      TEXT,         -- verbatim text on screen at that moment",
+        "detail": "sentinel.agent",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_screenshot",
+        "kind": 2,
+        "importPath": "sentinel.analyze",
+        "description": "sentinel.analyze",
+        "peekOfCode": "def analyze_screenshot(image_bytes: bytes) -> Note:\n    \"\"\"Send a screenshot to Gemma 4 and return a stamped Note. Streams to stdout.\"\"\"\n    t0 = time.perf_counter()\n    original_kb = len(image_bytes) / 1024\n    image_bytes = _downscale(image_bytes)\n    t1 = time.perf_counter()\n    print(\n        f\"[debug] downscale {original_kb:.0f}KB -> {len(image_bytes) / 1024:.0f}KB \"\n        f\"in {(t1 - t0) * 1000:.0f}ms\",\n        flush=True,",
+        "detail": "sentinel.analyze",
+        "documentation": {}
+    },
+    {
+        "label": "SYSTEM_PROMPT",
+        "kind": 5,
+        "importPath": "sentinel.analyze",
+        "description": "sentinel.analyze",
+        "peekOfCode": "SYSTEM_PROMPT = \"\"\"You are observing a screenshot of someone's laptop screen.\nExtract structured information about what is currently happening on screen.\nReturn ONLY a YAML document inside a ```yaml fenced block. No prose before or after.\nThe YAML document must have exactly these top-level keys, in this order:\n- app:     a string — the app, website, or window in focus\n- ocr:     a multi-line string using the `|` block scalar — verbatim text on screen\n- summary: a multi-line string using the `|` block scalar — 3-6 sentence interpretation\n- people:  a YAML list of strings — names of people visible (or [] if none)\n- urgency: one of: low, medium, high\nExample of the exact format expected:",
+        "detail": "sentinel.analyze",
+        "documentation": {}
+    },
+    {
+        "label": "_client",
+        "kind": 5,
+        "importPath": "sentinel.analyze",
+        "description": "sentinel.analyze",
+        "peekOfCode": "_client = OpenAI(base_url=settings.GEMMA_BASE_URL, api_key=\"not-needed\")\ndef _detect_mime(image_bytes: bytes) -> str:\n    if image_bytes.startswith(b\"\\xff\\xd8\\xff\"):\n        return \"image/jpeg\"\n    if image_bytes.startswith(b\"\\x89PNG\\r\\n\\x1a\\n\"):\n        return \"image/png\"\n    if image_bytes[:4] == b\"RIFF\" and image_bytes[8:12] == b\"WEBP\":\n        return \"image/webp\"\n    return \"image/png\"\ndef _to_data_url(image_bytes: bytes) -> str:",
+        "detail": "sentinel.analyze",
+        "documentation": {}
+    },
+    {
+        "label": "run_loop",
+        "kind": 2,
+        "importPath": "sentinel.capture",
+        "description": "sentinel.capture",
+        "peekOfCode": "def run_loop() -> None:\n    init_db()\n    interval = settings.CAPTURE_INTERVAL_SECONDS\n    with mss.mss() as sct:\n        # monitors[0] is the virtual \"all monitors\" rect; [1:] are individual displays.\n        screens = sct.monitors[1:]\n        print(\n            f\"Sentinel started. Detected {len(screens)} screen(s). \"\n            f\"Capturing every {interval}s. Ctrl+C to stop.\\n\"\n        )",
+        "detail": "sentinel.capture",
+        "documentation": {}
+    },
+    {
+        "label": "NoteAnalysis",
+        "kind": 6,
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "peekOfCode": "class NoteAnalysis(BaseModel):\n    \"\"\"Visual content extracted by the VLM from a single screenshot.\"\"\"\n    app: str = Field(description=\"Active app or website visible on screen\")\n    ocr: str = Field(description=\"Verbatim transcription of all readable text on screen, top-to-bottom, left-to-right, preserving rough grouping with newlines\")\n    summary: str = Field(description=\"A 3-6 sentence interpretive overview of what the user is doing and seeing\")\n    people: list[str] = Field(default_factory=list, description=\"Names of people visible or mentioned\")\n    urgency: Literal[\"low\", \"medium\", \"high\"] = \"low\"\nclass Note(NoteAnalysis):\n    \"\"\"A NoteAnalysis stamped with capture metadata (when, which screen).\"\"\"\n    ts: datetime",
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "kind": 6,
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "peekOfCode": "class Note(NoteAnalysis):\n    \"\"\"A NoteAnalysis stamped with capture metadata (when, which screen).\"\"\"\n    ts: datetime\n    screen: int = 1",
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "peekOfCode": "class Settings(BaseSettings):\n    model_config = SettingsConfigDict(env_file=ENV_FILE, extra=\"ignore\")\n    GEMMA_BASE_URL: str = \"\"\n    GEMMA_MODEL: str = \"\"\n    DB_PATH: str = \"\"\n    CAPTURE_INTERVAL_SECONDS: int = 0\n    MAX_IMAGE_WIDTH: int = 1280\n    @property\n    def db_path(self) -> Path:\n        \"\"\"DB_PATH resolved to an absolute path (relative to project root).\"\"\"",
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "kind": 2,
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "peekOfCode": "def get_settings() -> Settings:\n    \"\"\"Get application settings instance\"\"\"\n    return Settings()\nsettings = get_settings()",
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent\nENV_FILE = PROJECT_ROOT / \".env\"\nclass Settings(BaseSettings):\n    model_config = SettingsConfigDict(env_file=ENV_FILE, extra=\"ignore\")\n    GEMMA_BASE_URL: str = \"\"\n    GEMMA_MODEL: str = \"\"\n    DB_PATH: str = \"\"\n    CAPTURE_INTERVAL_SECONDS: int = 0\n    MAX_IMAGE_WIDTH: int = 1280\n    @property",
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ENV_FILE",
+        "kind": 5,
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "peekOfCode": "ENV_FILE = PROJECT_ROOT / \".env\"\nclass Settings(BaseSettings):\n    model_config = SettingsConfigDict(env_file=ENV_FILE, extra=\"ignore\")\n    GEMMA_BASE_URL: str = \"\"\n    GEMMA_MODEL: str = \"\"\n    DB_PATH: str = \"\"\n    CAPTURE_INTERVAL_SECONDS: int = 0\n    MAX_IMAGE_WIDTH: int = 1280\n    @property\n    def db_path(self) -> Path:",
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "peekOfCode": "settings = get_settings()",
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "peekOfCode": "def init_db() -> None:\n    with _connect() as conn:\n        conn.executescript(SCHEMA)\ndef insert_note(note: Note) -> int:\n    with _connect() as conn:\n        cur = conn.execute(\n            \"INSERT INTO notes (ts, screen, app, ocr, summary, people, urgency) VALUES (?, ?, ?, ?, ?, ?, ?)\",\n            (\n                note.ts.isoformat(),\n                note.screen,",
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "insert_note",
+        "kind": 2,
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "peekOfCode": "def insert_note(note: Note) -> int:\n    with _connect() as conn:\n        cur = conn.execute(\n            \"INSERT INTO notes (ts, screen, app, ocr, summary, people, urgency) VALUES (?, ?, ?, ?, ?, ?, ?)\",\n            (\n                note.ts.isoformat(),\n                note.screen,\n                note.app,\n                note.ocr,\n                note.summary,",
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "recent_notes",
+        "kind": 2,
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "peekOfCode": "def recent_notes(limit: int = 10) -> list[Note]:\n    with _connect() as conn:\n        rows = conn.execute(\n            \"SELECT ts, screen, app, ocr, summary, people, urgency FROM notes ORDER BY ts DESC LIMIT ?\",\n            (limit,),\n        ).fetchall()\n    return [\n        Note(\n            ts=datetime.fromisoformat(r[\"ts\"]),\n            screen=r[\"screen\"],",
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "SCHEMA",
+        "kind": 5,
+        "importPath": "sentinel.storage",
+        "description": "sentinel.storage",
+        "peekOfCode": "SCHEMA = \"\"\"\nCREATE TABLE IF NOT EXISTS notes (\n    id       INTEGER PRIMARY KEY AUTOINCREMENT,\n    ts       TEXT    NOT NULL,\n    screen   INTEGER NOT NULL DEFAULT 1,\n    app      TEXT    NOT NULL,\n    ocr      TEXT    NOT NULL DEFAULT '',\n    summary  TEXT    NOT NULL,\n    people   TEXT    NOT NULL DEFAULT '[]',\n    urgency  TEXT    NOT NULL DEFAULT 'low'",
+        "detail": "sentinel.storage",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "sentinel.test_analyze",
+        "description": "sentinel.test_analyze",
+        "peekOfCode": "def main() -> None:\n    if len(sys.argv) < 2:\n        print(__doc__)\n        sys.exit(1)\n    path = Path(sys.argv[1])\n    if not path.exists():\n        print(f\"File not found: {path}\")\n        sys.exit(1)\n    img_bytes = path.read_bytes()\n    print(f\"Image: {path.name} ({len(img_bytes) / 1024:.1f} KB)\")",
+        "detail": "sentinel.test_analyze",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    print(\"Hello from gemma4!\")\nif __name__ == \"__main__\":\n    main()",
+        "detail": "main",
+        "documentation": {}
+    }
+]

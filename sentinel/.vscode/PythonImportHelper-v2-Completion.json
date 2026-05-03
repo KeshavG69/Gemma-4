@@ -1,0 +1,146 @@
+[
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "importPath": "sentinel.models",
+        "description": "sentinel.models",
+        "isExtraImport": true,
+        "detail": "sentinel.models",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
+        "label": "Note",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class Note(BaseModel):\n    ts: datetime\n    app: str = Field(description=\"Active app or website visible on screen\")\n    summary: str = Field(description=\"One or two sentences describing what's happening\")\n    people: list[str] = Field(default_factory=list, description=\"Names of people visible or mentioned\")\n    urgency: Literal[\"low\", \"medium\", \"high\"] = \"low\"",
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "class Settings(BaseSettings):\n    GEMMA_BASE_URL:str =\"\"\n    GEMMA_MODEL:str = \"\"\n    DB_PATH:Path = \"\"\n    CAPTURE_INTERVAL_SECONDS:int = 0",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "storage",
+        "description": "storage",
+        "peekOfCode": "def init_db() -> None:\n    with _connect() as conn:\n        conn.executescript(SCHEMA)\ndef insert_note(note: Note) -> int:\n    with _connect() as conn:\n        cur = conn.execute(\n            \"INSERT INTO notes (ts, app, summary, people, urgency) VALUES (?, ?, ?, ?, ?)\",\n            (\n                note.ts.isoformat(),\n                note.app,",
+        "detail": "storage",
+        "documentation": {}
+    },
+    {
+        "label": "insert_note",
+        "kind": 2,
+        "importPath": "storage",
+        "description": "storage",
+        "peekOfCode": "def insert_note(note: Note) -> int:\n    with _connect() as conn:\n        cur = conn.execute(\n            \"INSERT INTO notes (ts, app, summary, people, urgency) VALUES (?, ?, ?, ?, ?)\",\n            (\n                note.ts.isoformat(),\n                note.app,\n                note.summary,\n                json.dumps(note.people),\n                note.urgency,",
+        "detail": "storage",
+        "documentation": {}
+    },
+    {
+        "label": "recent_notes",
+        "kind": 2,
+        "importPath": "storage",
+        "description": "storage",
+        "peekOfCode": "def recent_notes(limit: int = 10) -> list[Note]:\n    with _connect() as conn:\n        rows = conn.execute(\n            \"SELECT ts, app, summary, people, urgency FROM notes ORDER BY ts DESC LIMIT ?\",\n            (limit,),\n        ).fetchall()\n    return [\n        Note(\n            ts=datetime.fromisoformat(r[\"ts\"]),\n            app=r[\"app\"],",
+        "detail": "storage",
+        "documentation": {}
+    },
+    {
+        "label": "SCHEMA",
+        "kind": 5,
+        "importPath": "storage",
+        "description": "storage",
+        "peekOfCode": "SCHEMA = \"\"\"\nCREATE TABLE IF NOT EXISTS notes (\n    id       INTEGER PRIMARY KEY AUTOINCREMENT,\n    ts       TEXT    NOT NULL,\n    app      TEXT    NOT NULL,\n    summary  TEXT    NOT NULL,\n    people   TEXT    NOT NULL DEFAULT '[]',\n    urgency  TEXT    NOT NULL DEFAULT 'low'\n);\nCREATE INDEX IF NOT EXISTS idx_notes_ts ON notes(ts);",
+        "detail": "storage",
+        "documentation": {}
+    }
+]
