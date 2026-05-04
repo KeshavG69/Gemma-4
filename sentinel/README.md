@@ -224,4 +224,4 @@ Things that would obviously be next:
 
 ---
 
-Built solo. If you'd like to discuss building privacy-first AI tools or have ideas for what to add, reach out.
+Built solo by [Keshav Garg](https://www.linkedin.com/in/keshavcodes). If you'd like to discuss building privacy-first AI tools or have ideas for what to add, reach out on LinkedIn.

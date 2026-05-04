@@ -4,12 +4,17 @@ Run:
     uv run python -m sentinel.ui
 """
 
+import atexit
+import signal
+import subprocess
+import sys
 from datetime import date, datetime, timedelta
 
 from nicegui import ui
 
 from sentinel.agent import make_agent
 from sentinel.digest import stream_digest
+from sentinel.settings import PROJECT_ROOT
 from sentinel.storage import init_db, notes_on_date, recent_notes
 from sentinel.streaming import stream_agent_response
 
@@ -23,6 +28,7 @@ SUGGESTED_QUESTIONS = [
 
 
 _agent = None
+_capture_proc: subprocess.Popen | None = None
 
 
 def _get_agent():
@@ -32,17 +38,53 @@ def _get_agent():
     return _agent
 
 
+def is_capturing() -> bool:
+    """True if a capture subprocess is alive."""
+    return _capture_proc is not None and _capture_proc.poll() is None
+
+
+def start_capture() -> None:
+    """Spawn `python -m sentinel.capture` as a subprocess from the project root."""
+    global _capture_proc
+    if is_capturing():
+        return
+    _capture_proc = subprocess.Popen(
+        [sys.executable, "-m", "sentinel.capture"],
+        cwd=PROJECT_ROOT,
+    )
+
+
+def stop_capture() -> None:
+    """Send SIGINT so capture's KeyboardInterrupt handler exits cleanly."""
+    global _capture_proc
+    if _capture_proc is None:
+        return
+    if _capture_proc.poll() is None:
+        try:
+            _capture_proc.send_signal(signal.SIGINT)
+            _capture_proc.wait(timeout=5)
+        except (ProcessLookupError, subprocess.TimeoutExpired):
+            _capture_proc.kill()
+    _capture_proc = None
+
+
+# Make sure capture doesn't outlive the UI on a clean exit
+atexit.register(stop_capture)
+
+
 def _capture_status() -> tuple[str, str, str]:
     """Returns (label, color, icon) for the status chip."""
     from sentinel.settings import settings
 
     notes = recent_notes(limit=1)
     if not notes:
-        return "Idle", "grey-7", "circle"
+        return ("Capturing", "green", "fiber_manual_record") if is_capturing() else ("Idle", "grey-7", "circle")
     age = datetime.now() - notes[0].ts
     if age <= timedelta(seconds=settings.CAPTURE_INTERVAL_SECONDS * 2):
         return "Capturing", "green", "fiber_manual_record"
     minutes = int(age.total_seconds() // 60)
+    if is_capturing():
+        return f"Capturing (last {minutes}m ago)", "green", "fiber_manual_record"
     return f"Last note {minutes}m ago", "orange", "schedule"
 
 
@@ -77,16 +119,34 @@ def build_ui() -> None:
                     ui.label("100% on this laptop · Powered by Gemma 4").classes(
                         "text-xs text-gray-500"
                     )
-            status_chip = (
-                ui.chip("Idle", icon="circle", color="grey-7")
-                .props("text-color=white outline")
-                .classes("mt-1")
-            )
+            with ui.column().classes("items-end gap-2"):
+                status_chip = (
+                    ui.chip("Idle", icon="circle", color="grey-7")
+                    .props("text-color=white outline")
+                )
+                capture_button = ui.button("Start Capture", icon="play_arrow").props(
+                    "rounded color=positive"
+                )
+
+        def toggle_capture():
+            if is_capturing():
+                stop_capture()
+            else:
+                start_capture()
+            refresh_status()
+
+        capture_button.on_click(toggle_capture)
 
         def refresh_status():
             label, color, icon = _capture_status()
             status_chip.text = label
             status_chip.props(f"color={color} icon={icon}")
+            if is_capturing():
+                capture_button.text = "Stop Capture"
+                capture_button.props("icon=stop color=negative")
+            else:
+                capture_button.text = "Start Capture"
+                capture_button.props("icon=play_arrow color=positive")
 
         ui.timer(5.0, refresh_status, immediate=True)
 

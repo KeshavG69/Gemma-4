@@ -288,6 +288,14 @@
         "documentation": {}
     },
     {
+        "label": "PROJECT_ROOT",
+        "importPath": "sentinel.settings",
+        "description": "sentinel.settings",
+        "isExtraImport": true,
+        "detail": "sentinel.settings",
+        "documentation": {}
+    },
+    {
         "label": "base64",
         "kind": 6,
         "isExtraImport": true,
@@ -595,6 +603,33 @@
         "description": "analyze",
         "isExtraImport": true,
         "detail": "analyze",
+        "documentation": {}
+    },
+    {
+        "label": "atexit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "atexit",
+        "description": "atexit",
+        "detail": "atexit",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -2142,6 +2177,33 @@
         "documentation": {}
     },
     {
+        "label": "is_capturing",
+        "kind": 2,
+        "importPath": "sentinel.ui",
+        "description": "sentinel.ui",
+        "peekOfCode": "def is_capturing() -> bool:\n    \"\"\"True if a capture subprocess is alive.\"\"\"\n    return _capture_proc is not None and _capture_proc.poll() is None\ndef start_capture() -> None:\n    \"\"\"Spawn `python -m sentinel.capture` as a subprocess from the project root.\"\"\"\n    global _capture_proc\n    if is_capturing():\n        return\n    _capture_proc = subprocess.Popen(\n        [sys.executable, \"-m\", \"sentinel.capture\"],",
+        "detail": "sentinel.ui",
+        "documentation": {}
+    },
+    {
+        "label": "start_capture",
+        "kind": 2,
+        "importPath": "sentinel.ui",
+        "description": "sentinel.ui",
+        "peekOfCode": "def start_capture() -> None:\n    \"\"\"Spawn `python -m sentinel.capture` as a subprocess from the project root.\"\"\"\n    global _capture_proc\n    if is_capturing():\n        return\n    _capture_proc = subprocess.Popen(\n        [sys.executable, \"-m\", \"sentinel.capture\"],\n        cwd=PROJECT_ROOT,\n    )\ndef stop_capture() -> None:",
+        "detail": "sentinel.ui",
+        "documentation": {}
+    },
+    {
+        "label": "stop_capture",
+        "kind": 2,
+        "importPath": "sentinel.ui",
+        "description": "sentinel.ui",
+        "peekOfCode": "def stop_capture() -> None:\n    \"\"\"Send SIGINT so capture's KeyboardInterrupt handler exits cleanly.\"\"\"\n    global _capture_proc\n    if _capture_proc is None:\n        return\n    if _capture_proc.poll() is None:\n        try:\n            _capture_proc.send_signal(signal.SIGINT)\n            _capture_proc.wait(timeout=5)\n        except (ProcessLookupError, subprocess.TimeoutExpired):",
+        "detail": "sentinel.ui",
+        "documentation": {}
+    },
+    {
         "label": "build_ui",
         "kind": 2,
         "importPath": "sentinel.ui",
@@ -2164,7 +2226,7 @@
         "kind": 5,
         "importPath": "sentinel.ui",
         "description": "sentinel.ui",
-        "peekOfCode": "SUGGESTED_QUESTIONS = [\n    \"What apps did I use today?\",\n    \"What was I doing at 1 AM?\",\n    \"Any high urgency moments today?\",\n    \"Summarise the last hour\",\n]\n_agent = None\ndef _get_agent():\n    global _agent\n    if _agent is None:",
+        "peekOfCode": "SUGGESTED_QUESTIONS = [\n    \"What apps did I use today?\",\n    \"What was I doing at 1 AM?\",\n    \"Any high urgency moments today?\",\n    \"Summarise the last hour\",\n]\n_agent = None\n_capture_proc: subprocess.Popen | None = None\ndef _get_agent():\n    global _agent",
         "detail": "sentinel.ui",
         "documentation": {}
     },
@@ -2173,7 +2235,7 @@
         "kind": 5,
         "importPath": "sentinel.ui",
         "description": "sentinel.ui",
-        "peekOfCode": "_agent = None\ndef _get_agent():\n    global _agent\n    if _agent is None:\n        _agent = make_agent()\n    return _agent\ndef _capture_status() -> tuple[str, str, str]:\n    \"\"\"Returns (label, color, icon) for the status chip.\"\"\"\n    from sentinel.settings import settings\n    notes = recent_notes(limit=1)",
+        "peekOfCode": "_agent = None\n_capture_proc: subprocess.Popen | None = None\ndef _get_agent():\n    global _agent\n    if _agent is None:\n        _agent = make_agent()\n    return _agent\ndef is_capturing() -> bool:\n    \"\"\"True if a capture subprocess is alive.\"\"\"\n    return _capture_proc is not None and _capture_proc.poll() is None",
         "detail": "sentinel.ui",
         "documentation": {}
     },
